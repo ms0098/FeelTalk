@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeelTalk - Religious Motivation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1410 0%, #2a2217 100%);
+            color: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: #F4A261;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #F4A261;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        .mode-badge {
+            display: inline-block;
+            background-color: rgba(244, 162, 97, 0.2);
+            border: 2px solid #F4A261;
+            color: #F4A261;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 15px;
+            text-transform: uppercase;
+        }
+
+        .inspiration-section {
+            background: linear-gradient(135deg, rgba(244, 162, 97, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border-left: 4px solid #F4A261;
+            padding: 24px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .inspiration-quote {
+            font-size: 18px;
+            font-style: italic;
+            color: #F4A261;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .inspiration-author {
+            font-size: 12px;
+            color: #c4956a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chat-interface {
+            background: linear-gradient(135deg, rgba(244, 162, 97, 0.05) 0%, rgba(255, 255, 255, 0.03) 100%);
+            border: 2px solid #F4A261;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .chat-header {
+            background-color: rgba(244, 162, 97, 0.2);
+            padding: 16px 20px;
+            border-bottom: 2px solid #F4A261;
+            text-align: center;
+        }
+
+        .chat-header h2 {
+            color: #F4A261;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 12px;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message.ai {
+            justify-content: flex-start;
+        }
+
+        .message-bubble {
+            max-width: 65%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            word-wrap: break-word;
+            line-height: 1.5;
+        }
+
+        .message.user .message-bubble {
+            background-color: #F4A261;
+            color: #1a1410;
+            border-radius: 12px 0 12px 12px;
+            font-weight: 500;
+        }
+
+        .message.ai .message-bubble {
+            background: linear-gradient(135deg, rgba(244, 162, 97, 0.2) 0%, rgba(244, 162, 97, 0.1) 100%);
+            color: #f5f5f5;
+            border-left: 3px solid #F4A261;
+            border-radius: 0 12px 12px 12px;
+        }
+
+        .input-area {
+            padding: 16px 20px;
+            background-color: rgba(244, 162, 97, 0.1);
+            border-top: 2px solid #F4A261;
+        }
+
+        .input-form {
+            display: flex;
+            gap: 8px;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 12px 16px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid #F4A261;
+            border-radius: 8px;
+            color: #f5f5f5;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+        }
+
+        .input-field::placeholder {
+            color: #c4956a;
+        }
+
+        .input-field:focus {
+            outline: none;
+            box-shadow: 0 0 12px rgba(244, 162, 97, 0.3);
+        }
+
+        .send-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #F4A261 0%, #f5a855 100%);
+            color: #1a1410;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 12px;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(244, 162, 97, 0.3);
+        }
+
+        .send-btn:active {
+            transform: translateY(0);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(244, 162, 97, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid #F4A261;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .feature-title {
+            color: #F4A261;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feature-desc {
+            color: #c4956a;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #c4956a;
+            font-size: 12px;
+            border-top: 1px solid rgba(244, 162, 97, 0.2);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(244, 162, 97, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #F4A261;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f5a855;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 32px;
+            }
+
+            .chat-interface {
+                height: 400px;
+            }
+
+            .message-bubble {
+                max-width: 85%;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">FeelTalk</div>
+            <div class="subtitle">Spiritual Guidance & Faith-Based Motivation</div>
+            <div class="mode-badge">🙏 Religious Motivation Mode</div>
+        </header>
+
+        <div class="inspiration-section">
+            <div class="inspiration-quote">
+                "The only way to do great work is to love what you do. Have faith in your journey and trust the divine plan."
+            </div>
+            <div class="inspiration-author">— Wisdom & Devotion</div>
+        </div>
+
+        <div class="chat-interface">
+            <div class="chat-header">
+                <h2>Spiritual Guidance Chat</h2>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message ai">
+                    <div class="message-bubble">
+                        🙏 Namaste! Welcome to your spiritual journey. I'm here to offer faith-based inspiration and guidance. What's on your heart today?
+                    </div>
+                </div>
+                <div class="message user">
+                    <div class="message-bubble">
+                        I'm feeling lost and uncertain about my path.
+                    </div>
+                </div>
+                <div class="message ai">
+                    <div class="message-bubble">
+                        In times of uncertainty, remember that faith is not the absence of doubt, but the courage to move forward despite it. The divine has a purpose for every challenge you face. Trust in the journey, for even in darkness, the light always finds a way. Your struggles today are shaping your wisdom for tomorrow. 🌟
+                    </div>
+                </div>
+            </div>
+            <div class="input-area">
+                <form class="input-form" onsubmit="handleSendMessage(event)">
+                    <input 
+                        type="text" 
+                        class="input-field" 
+                        id="message-input"
+                        placeholder="Share your thoughts or ask for guidance..."
+                        autocomplete="off"
+                    >
+                    <button type="submit" class="send-btn">Send</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">📿</div>
+                <div class="feature-title">Faith-Based Guidance</div>
+                <div class="feature-desc">Receive wisdom rooted in spiritual traditions and divine principles</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <div class="feature-title">Spiritual Motivation</div>
+                <div class="feature-desc">Get inspired through faith-centered encouragement and affirmations</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🕯️</div>
+                <div class="feature-title">Inner Peace</div>
+                <div class="feature-desc">Find tranquility and purpose through spiritual conversations</div>
+            </div>
+        </div>
+
+        <footer>
+            <p>FeelTalk © 2026 | Powered by MistralAI | All faiths welcomed</p>
+        </footer>
+    </div>
+
+    <script>
+        function handleSendMessage(event) {
+            event.preventDefault();
+            const input = document.getElementById('message-input');
+            const message = input.value.trim();
+            
+            if (message) {
+                // Add user message
+                const userDiv = document.createElement('div');
+                userDiv.className = 'message user';
+                userDiv.innerHTML = `<div class="message-bubble">${message}</div>`;
+                document.getElementById('chat-messages').appendChild(userDiv);
+                
+                input.value = '';
+                
+                // Simulate AI response
+                setTimeout(() => {
+                    const aiDiv = document.createElement('div');
+                    aiDiv.className = 'message ai';
+                    aiDiv.innerHTML = `<div class="message-bubble">Your message has been received. In the full application, this would connect to the FeelTalk API with religious motivation mode enabled. 🙏</div>`;
+                    document.getElementById('chat-messages').appendChild(aiDiv);
+                    document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
+                }, 500);
+                
+                document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
+            }
+        }
+    </script>
+</body>
+</html>

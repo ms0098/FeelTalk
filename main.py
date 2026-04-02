@@ -5,7 +5,10 @@ Entry point for the FastAPI application.
 
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from app.routers import chat, auth
+import os
 
 
 @asynccontextmanager
@@ -33,16 +36,29 @@ app = FastAPI(
 app.include_router(auth.router)
 app.include_router(chat.router)
 
+# Mount static files (CSS, JS, images)
+static_path = os.path.join(os.path.dirname(__file__), "frontend", "assets")
+if os.path.exists(static_path):
+    app.mount("/static", StaticFiles(directory=static_path), name="static")
 
-@app.get("/", summary="Health check")
-def root() -> dict:
-    """Simple health check endpoint to confirm the server is running."""
+
+@app.get("/", summary="Serve Frontend")
+async def serve_frontend():
+    """Serve the main frontend index.html"""
+    frontend_path = os.path.join(os.path.dirname(__file__), "frontend", "index.html")
+    return FileResponse(frontend_path)
+
+
+@app.get("/health", summary="Health check")
+def health_check() -> dict:
+    """Health check endpoint to confirm the server is running."""
     return {
         "status": "ok",
-        "message": "FeelTalk is running. Visit /docs for the API.",
+        "message": "FeelTalk is running.",
         "endpoints": {
+            "frontend": "GET /",
+            "docs": "GET /docs",
             "signup": "POST /auth/signup",
-            "unauthenticated_roast": "POST /chat/",
-            "authenticated_roast": "POST /chat/roast (requires X-Auth-Token header)",
+            "chat": "POST /chat/",
         },
     }

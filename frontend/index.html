@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeelTalk - AI Chat Companion</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-icon">▶</span>
+                    <div class="logo-text">
+                        <div class="logo-main">FeelTalk</div>
+                        <div class="logo-sub">AI Chat Companion</div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="auth-btn" id="login-btn">Login / Signup</button>
+                <div id="user-info" class="user-info" style="display: none;">
+                    <span id="username-display"></span>
+                    <button class="logout-btn" id="logout-btn">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Mode Selector -->
+        <div class="mode-selector">
+            <div class="mode-buttons-container">
+                <button class="mode-btn active" data-mode="angry roast" data-emoji="🔥" data-description="Get roasted mercilessly">
+                    <span class="mode-emoji">🔥</span>
+                    <span class="mode-label">Angry Roast</span>
+                </button>
+                <button class="mode-btn" data-mode="soft roast" data-emoji="😏" data-description="Gentle teasing vibes">
+                    <span class="mode-emoji">😏</span>
+                    <span class="mode-label">Soft Roast</span>
+                </button>
+                <button class="mode-btn" data-mode="general motivation" data-emoji="💪" data-description="Get inspired and motivated">
+                    <span class="mode-emoji">💪</span>
+                    <span class="mode-label">Motivation</span>
+                </button>
+                <button class="mode-btn" data-mode="religious motivation" data-emoji="🙏" data-description="Spiritual guidance and faith">
+                    <span class="mode-emoji">🙏</span>
+                    <span class="mode-label">Religious</span>
+                </button>
+                <button class="mode-btn" data-mode="seductive roast" data-emoji="😘" data-description="Flirty roasting vibes">
+                    <span class="mode-emoji">😘</span>
+                    <span class="mode-label">Seductive</span>
+                </button>
+                <button class="mode-btn" data-mode="seductive motivation" data-emoji="✨" data-description="Charming encouragement">
+                    <span class="mode-emoji">✨</span>
+                    <span class="mode-label">Charm</span>
+                </button>
+                <button class="mode-btn" data-mode="flirty" data-emoji="💋" data-description="Playful banter and fun">
+                    <span class="mode-emoji">💋</span>
+                    <span class="mode-label">Flirty</span>
+                </button>
+                <button class="mode-btn" data-mode="dumb friend" data-emoji="🤪" data-description="Silly and absurd humor">
+                    <span class="mode-emoji">🤪</span>
+                    <span class="mode-label">Dumb Friend</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="chat-container">
+            <!-- Welcome/Chat Area -->
+            <div class="welcome-section" id="welcome-section">
+                <div class="emoji-display" id="emoji-display">🔥</div>
+                <h1>Welcome to FeelTalk</h1>
+                <p id="mode-description">You're in <strong>Angry Roast</strong> mode. Get roasted mercilessly. Start chatting!</p>
+            </div>
+
+            <!-- Messages Area -->
+            <div class="chat-messages" id="chat-messages" style="display: none;"></div>
+
+            <!-- Input Area -->
+            <div class="input-area">
+                <form id="chat-form" class="chat-form">
+                    <input 
+                        type="text" 
+                        id="message-input" 
+                        placeholder="Type your message..." 
+                        autocomplete="off"
+                    >
+                    <button type="submit" class="send-btn">
+                        <span>➤</span>
+                    </button>
+                </form>
+                <div class="input-hint">Press Enter to send</div>
+            </div>
+        </main>
+
+        <!-- Modal -->
+        <div id="auth-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <div id="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/chat.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
