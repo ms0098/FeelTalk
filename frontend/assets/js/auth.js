@@ -8,6 +8,7 @@ class AuthManager {
 
     async signup(userData) {
         try {
+            console.log('Sending signup data:', userData);
             const response = await fetch(`${CONFIG.API_URL}/auth/signup`, {
                 method: 'POST',
                 headers: {
@@ -16,12 +17,17 @@ class AuthManager {
                 body: JSON.stringify(userData)
             });
 
+            console.log('Response status:', response.status);
+            console.log('Response headers:', response.headers);
+
             if (!response.ok) {
                 const errorData = await response.json();
+                console.error('Error response:', errorData);
                 throw new Error(errorData.detail || 'Signup failed');
             }
 
             const data = await response.json();
+            console.log('Signup successful:', data);
             this.setAuth(data.token, data.username);
             return data;
         } catch (error) {
@@ -116,15 +122,26 @@ function showSignupModal() {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        const username = document.getElementById('signup-username').value.trim();
-        const gender = document.getElementById('signup-gender').value.trim();
-        const profession = document.getElementById('signup-profession').value.trim();
-        const description = document.getElementById('signup-description').value.trim();
-        const region = document.getElementById('signup-region').value || 'Delhi';
+        const username = (document.getElementById('signup-username').value || '').trim();
+        const gender = (document.getElementById('signup-gender').value || '').trim();
+        const profession = (document.getElementById('signup-profession').value || '').trim();
+        const description = (document.getElementById('signup-description').value || '').trim();
+        const region = (document.getElementById('signup-region').value || 'Delhi').trim();
+
+        console.log('Form values before validation:', {
+            username,
+            gender,
+            profession,
+            description,
+            region,
+            username_len: username.length,
+            profession_len: profession.length,
+            description_len: description.length
+        });
 
         // Validation
         if (!username || username.length < 3) {
-            showNotification('Username must be at least 3 characters', 'error');
+            showNotification(`Username must be at least 3 characters (got ${username.length})`, 'error');
             return;
         }
         if (!gender) {
@@ -132,11 +149,11 @@ function showSignupModal() {
             return;
         }
         if (!profession || profession.length < 2) {
-            showNotification('Profession must be at least 2 characters', 'error');
+            showNotification(`Profession must be at least 2 characters (got ${profession.length})`, 'error');
             return;
         }
         if (!description || description.length < 10) {
-            showNotification('Description must be at least 10 characters', 'error');
+            showNotification(`Description must be at least 10 characters (got ${description.length})`, 'error');
             return;
         }
 
@@ -147,6 +164,8 @@ function showSignupModal() {
             description,
             region
         };
+
+        console.log('Validation passed, sending data:', userData);
 
         try {
             await authManager.signup(userData);
