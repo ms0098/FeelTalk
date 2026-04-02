@@ -32,35 +32,35 @@
         <!-- Mode Selector -->
         <div class="mode-selector">
             <div class="mode-buttons-container">
-                <button class="mode-btn active" data-mode="angry roast" data-emoji="🔥" data-description="Get roasted mercilessly">
-                    <span class="mode-emoji">🔥</span>
-                    <span class="mode-label">Angry Roast</span>
-                </button>
-                <button class="mode-btn" data-mode="soft roast" data-emoji="😏" data-description="Gentle teasing vibes">
-                    <span class="mode-emoji">😏</span>
-                    <span class="mode-label">Soft Roast</span>
-                </button>
-                <button class="mode-btn" data-mode="general motivation" data-emoji="💪" data-description="Get inspired and motivated">
+                <button class="mode-btn active" data-mode="general motivation" title="Genuine encouragement and positive motivation">
                     <span class="mode-emoji">💪</span>
                     <span class="mode-label">Motivation</span>
                 </button>
-                <button class="mode-btn" data-mode="religious motivation" data-emoji="🙏" data-description="Spiritual guidance and faith">
+                <button class="mode-btn" data-mode="soft roast" title="Gentle mocking with clever wit and sarcasm">
+                    <span class="mode-emoji">😏</span>
+                    <span class="mode-label">Soft Roast</span>
+                </button>
+                <button class="mode-btn" data-mode="angry roast" data-18plus="true" title="Brutal, toxic, and savage roasts with maximum profanity">
+                    <span class="mode-emoji">🤬</span>
+                    <span class="mode-label">Angry Roast</span>
+                </button>
+                <button class="mode-btn" data-mode="religious motivation" title="Faith-based spiritual guidance and wisdom">
                     <span class="mode-emoji">🙏</span>
                     <span class="mode-label">Religious</span>
                 </button>
-                <button class="mode-btn" data-mode="seductive roast" data-emoji="😘" data-description="Flirty roasting vibes">
+                <button class="mode-btn" data-mode="seductive roast" data-18plus="true" title="Flirty roasting with charm and wit">
                     <span class="mode-emoji">😘</span>
                     <span class="mode-label">Seductive</span>
                 </button>
-                <button class="mode-btn" data-mode="seductive motivation" data-emoji="✨" data-description="Charming encouragement">
+                <button class="mode-btn" data-mode="seductive motivation" data-18plus="true" title="Charming and flirty encouragement">
                     <span class="mode-emoji">✨</span>
                     <span class="mode-label">Charm</span>
                 </button>
-                <button class="mode-btn" data-mode="flirty" data-emoji="💋" data-description="Playful banter and fun">
+                <button class="mode-btn" data-mode="flirty" title="Playful banter with compliments and teasing">
                     <span class="mode-emoji">💋</span>
                     <span class="mode-label">Flirty</span>
                 </button>
-                <button class="mode-btn" data-mode="dumb friend" data-emoji="🤪" data-description="Silly and absurd humor">
+                <button class="mode-btn" data-mode="dumb friend" title="Silly absurdity and ridiculous humor">
                     <span class="mode-emoji">🤪</span>
                     <span class="mode-label">Dumb Friend</span>
                 </button>
@@ -71,9 +71,16 @@
         <main class="chat-container">
             <!-- Welcome/Chat Area -->
             <div class="welcome-section" id="welcome-section">
-                <div class="emoji-display" id="emoji-display">🔥</div>
+                <div class="emoji-display" id="emoji-display">💪</div>
                 <h1>Welcome to FeelTalk</h1>
-                <p id="mode-description">You're in <strong>Angry Roast</strong> mode. Get roasted mercilessly. Start chatting!</p>
+                <p id="mode-description">
+                    <!-- <div style="margin-bottom: 8px;">
+                        You're in <strong>Motivation</strong> mode
+                    </div>
+                    <div style="font-size: 14px; color: #a0a0a0; line-height: 1.5;">
+                        Receive genuine, encouraging messages that inspire action and positive change. Get powerful motivation to believe in yourself and achieve your goals.
+                    </div> -->
+                </p>
             </div>
 
             <!-- Messages Area -->
@@ -96,11 +103,18 @@
             </div>
         </main>
 
-        <!-- Modal -->
+        <!-- Auth Modal -->
         <div id="auth-modal" class="modal" style="display: none;">
             <div class="modal-content">
                 <button class="modal-close">&times;</button>
                 <div id="modal-body"></div>
+            </div>
+        </div>
+
+        <!-- Age Verification Modal -->
+        <div id="age-modal" class="modal" style="display: none;">
+            <div class="modal-content" style="max-width: 450px; text-align: center;">
+                <div id="age-modal-body"></div>
             </div>
         </div>
     </div>

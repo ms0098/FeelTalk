@@ -2,8 +2,8 @@
 
 class AuthManager {
     constructor() {
-        this.token = localStorage.getItem(CONFIG.STORAGE_KEYS.AUTH_TOKEN);
-        this.username = localStorage.getItem(CONFIG.STORAGE_KEYS.USERNAME);
+        this.token = sessionStorage.getItem(CONFIG.STORAGE_KEYS.AUTH_TOKEN);
+        this.username = sessionStorage.getItem(CONFIG.STORAGE_KEYS.USERNAME);
     }
 
     async signup(userData) {
@@ -39,8 +39,8 @@ class AuthManager {
     setAuth(token, username) {
         this.token = token;
         this.username = username;
-        localStorage.setItem(CONFIG.STORAGE_KEYS.AUTH_TOKEN, token);
-        localStorage.setItem(CONFIG.STORAGE_KEYS.USERNAME, username);
+        sessionStorage.setItem(CONFIG.STORAGE_KEYS.AUTH_TOKEN, token);
+        sessionStorage.setItem(CONFIG.STORAGE_KEYS.USERNAME, username);
     }
 
     getAuth() {
@@ -54,8 +54,8 @@ class AuthManager {
     logout() {
         this.token = null;
         this.username = null;
-        localStorage.removeItem(CONFIG.STORAGE_KEYS.AUTH_TOKEN);
-        localStorage.removeItem(CONFIG.STORAGE_KEYS.USERNAME);
+        sessionStorage.removeItem(CONFIG.STORAGE_KEYS.AUTH_TOKEN);
+        sessionStorage.removeItem(CONFIG.STORAGE_KEYS.USERNAME);
     }
 
     getHeaders() {

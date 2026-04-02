@@ -2,14 +2,15 @@
 
 class ChatManager {
     constructor() {
-        this.currentMode = localStorage.getItem(CONFIG.STORAGE_KEYS.SELECTED_MODE) || 'angry roast';
+        this.currentMode = sessionStorage.getItem(CONFIG.STORAGE_KEYS.SELECTED_MODE) || 'general motivation';
         this.messages = [];
         this.isLoading = false;
     }
 
     setMode(mode) {
         this.currentMode = mode;
-        localStorage.setItem(CONFIG.STORAGE_KEYS.SELECTED_MODE, mode);
+        sessionStorage.setItem(CONFIG.STORAGE_KEYS.SELECTED_MODE, mode);
+        this.clearMessages();
         this.updateModeUI();
     }
 
@@ -23,7 +24,14 @@ class ChatManager {
 
         const modeDescription = document.getElementById('mode-description');
         if (modeDescription) {
-            modeDescription.innerHTML = `You're in <strong>${modeConfig.name}</strong> mode. ${modeConfig.description}. Start chatting!`;
+            modeDescription.innerHTML = `
+                <div style="margin-bottom: 8px;">
+                    You're in <strong>${modeConfig.name}</strong> mode
+                </div>
+                <div style="font-size: 14px; color: #a0a0a0; line-height: 1.5;">
+                    ${modeConfig.fullDesc}
+                </div>
+            `;
         }
 
         document.querySelectorAll('.mode-btn').forEach((btn) => {
@@ -48,10 +56,20 @@ class ChatManager {
         this.showLoading();
 
         try {
+            // Get history (all messages except the current one being added)
+            // History format: [{role: 'user', content: '...'}, {role: 'system', content: '...'}, ...]
+            const history = this.messages.slice(0, -1).map(msg => ({
+                role: msg.role === 'ai' ? 'system' : msg.role,  // Convert 'ai' to 'system', keep 'user' as is
+                content: msg.content
+            }));
+
             const requestBody = {
                 message: userMessage,
-                mode: this.currentMode
+                mode: this.currentMode,
+                history: history
             };
+
+            console.log('Sending chat request with history:', requestBody);
 
             const response = await fetch(`${CONFIG.API_URL}/chat/`, {
                 method: 'POST',

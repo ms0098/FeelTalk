@@ -5,51 +5,59 @@ const CONFIG = {
     MODES: {
         'angry roast': {
             color: '#E63946',
-            emoji: '🔥',
+            emoji: '🤬',
             name: 'Angry Roast',
-            description: 'Get roasted mercilessly'
+            shortDesc: 'Get roasted mercilessly',
+            fullDesc: 'Receive brutal, toxic, and savage roasts with maximum profanity and harsh disrespect. This mode will destroy you verbally with extreme aggression and make you feel harshly tortured.'
         },
         'soft roast': {
             color: '#F77F88',
             emoji: '😏',
             name: 'Soft Roast',
-            description: 'Gentle teasing vibes'
+            shortDesc: 'Gentle teasing vibes',
+            fullDesc: 'Get gently mocked with clever wit and sarcasm. Light-hearted roasts that make you smile without being mean-spirited. Perfect for playful teasing.'
         },
         'general motivation': {
             color: '#06D6A0',
             emoji: '💪',
             name: 'Motivation',
-            description: 'Get inspired and motivated'
+            shortDesc: 'Get inspired and motivated',
+            fullDesc: 'Receive genuine, encouraging messages that inspire action and positive change. Get powerful motivation to believe in yourself and achieve your goals.'
         },
         'religious motivation': {
             color: '#F4A261',
             emoji: '🙏',
             name: 'Religious',
-            description: 'Spiritual guidance and faith'
+            shortDesc: 'Spiritual guidance and faith',
+            fullDesc: 'Receive faith-based inspiration and spiritual guidance rooted in wisdom and divine principles. Find inner peace through spiritually grounded encouragement.'
         },
         'seductive roast': {
             color: '#E76F51',
             emoji: '😘',
             name: 'Seductive',
-            description: 'Flirty roasting vibes'
+            shortDesc: 'Flirty roasting vibes',
+            fullDesc: 'Get roasted with charm and flirtation mixed with witty mockery. Playfully suggestive jabs that are fun and engaging without crossing boundaries.'
         },
         'seductive motivation': {
             color: '#F4A460',
             emoji: '✨',
             name: 'Charm',
-            description: 'Charming encouragement'
+            shortDesc: 'Charming encouragement',
+            fullDesc: 'Receive charming and flirty motivation that uplifts you with genuine support. Mix of flattery and powerful belief in your abilities.'
         },
         'flirty': {
             color: '#FF6B9D',
             emoji: '💋',
             name: 'Flirty',
-            description: 'Playful banter and fun'
+            shortDesc: 'Playful banter and fun',
+            fullDesc: 'Enjoy playful and charming banter with witty compliments and teasing. Light, fun engagement that keeps things entertaining and engaging.'
         },
         'dumb friend': {
             color: '#FFD60A',
             emoji: '🤪',
             name: 'Dumb Friend',
-            description: 'Silly and absurd humor'
+            shortDesc: 'Silly and absurd humor',
+            fullDesc: 'Get hilariously silly responses with absurd logic and ridiculous humor. Goofy best friend energy that makes you laugh with dumb jokes.'
         }
     },
     STORAGE_KEYS: {
